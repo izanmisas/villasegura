@@ -168,6 +168,63 @@ require_once 'includes/header.php';
         </div>
     </section>
 
+    <section class="representantes-section">
+        <div class="section-header text-center" style="margin-bottom: 3rem;">
+            <div>
+                <span class="subtitle">EQUIPO DE GOBIERNO</span>
+                <h2>Representantes Municipales</h2>
+                <p class="header-desc">Conoce a los responsables de las principales áreas de gestión y atención del Ayuntamiento.</p>
+            </div>
+        </div>
+
+        <div class="grid-3">
+            <div class="representante-card">
+                <div class="rep-avatar">
+                    <img src="/assets/img/alcalde.png" alt="Alcalde">
+                </div>
+                <div class="rep-info">
+                    <span class="tag-label">ALCALDÍA</span>
+                    <h3>Carlos Lopez</h3>
+                    <p>Alcalde presidente del Ayuntamiento. Responsable de la dirección institucional, seguridad ciudadana y coordinación general.</p>
+                    <a href="mailto:alcaldia@villasegura.es" class="rep-contact">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-mail"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+                        alcaldia@villasegura.es
+                    </a>
+                </div>
+            </div>
+
+            <div class="representante-card">
+                <div class="rep-avatar">
+                    <img src="/assets/img/ciudadana.png" alt="Concejala de Urbanismo">
+                </div>
+                <div class="rep-info">
+                    <span class="tag-label">URBANISMO</span>
+                    <h3>Laura Flores</h3>
+                    <p>Concejala delegada de Urbanismo, Obras Públicas y Transición Ecológica. Gestión del desarrollo territorial local.</p>
+                    <a href="mailto:urbanismo@villasegura.es" class="rep-contact">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-mail"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+                        urbanismo@villasegura.es
+                    </a>
+                </div>
+            </div>
+
+            <div class="representante-card">
+                <div class="rep-avatar">
+                    <img src="/assets/img/urbanismo.png" alt="Concejal de Atención Ciudadana">
+                </div>
+                <div class="rep-info">
+                    <span class="tag-label">ATENCIÓN CIUDADANA</span>
+                    <h3>Sergio Gil</h3>
+                    <p>Concejal delegado de Participación, Atención al Ciudadano, Fiestas y Servicios Generales.</p>
+                    <a href="mailto:ciudadania@villasegura.es" class="rep-contact">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-mail"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+                        ciudadania@villasegura.es
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
 </main>
 
 <?php require_once 'includes/footer.php'; ?>

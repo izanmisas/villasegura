@@ -45,11 +45,11 @@ CREATE TABLE IF NOT EXISTS `citas_previas` (
   `fecha_solicitud` timestamp NOT NULL DEFAULT current_timestamp(),
   `estado` varchar(20) DEFAULT 'Pendiente',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Volcando datos para la tabla villasegura_db.citas_previas: ~0 rows (aproximadamente)
 INSERT INTO `citas_previas` (`id`, `nombre_completo`, `dni_nie`, `email`, `telefono`, `servicio`, `fecha_preferida`, `notas`, `fecha_solicitud`, `estado`) VALUES
-	(1, 'Izan', '32423', 'izan@gmail.com', '7324', 'padron_tramites', '2026-04-25', 'sad', '2026-04-23 14:49:35', 'Pendiente');
+	(2, 'jesus', '49333213S', 'gfdew@gmail.com', '644729287', 'registro_general', '2027-01-01', 'uytrewq', '2026-05-04 15:18:13', 'Pendiente');
 
 -- Volcando estructura para tabla villasegura_db.eventos
 CREATE TABLE IF NOT EXISTS `eventos` (
@@ -80,11 +80,9 @@ CREATE TABLE IF NOT EXISTS `mensajes_contacto` (
   `fecha_envio` timestamp NOT NULL DEFAULT current_timestamp(),
   `leido` tinyint(1) DEFAULT 0,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Volcando datos para la tabla villasegura_db.mensajes_contacto: ~0 rows (aproximadamente)
-INSERT INTO `mensajes_contacto` (`id`, `nombre`, `email`, `asunto`, `mensaje`, `fecha_envio`, `leido`) VALUES
-	(1, 'Izan', 'izanmisas@gmail.com', 'asda', 'adas', '2026-04-23 15:05:58', 0);
 
 -- Volcando estructura para tabla villasegura_db.municipio_caracteristicas
 CREATE TABLE IF NOT EXISTS `municipio_caracteristicas` (
@@ -124,15 +122,16 @@ CREATE TABLE IF NOT EXISTS `noticias` (
   `fecha_publicacion` date NOT NULL,
   `titulo` varchar(255) NOT NULL,
   `extracto` text NOT NULL,
+  `contenido` text DEFAULT NULL,
   `imagen_ruta` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Volcando datos para la tabla villasegura_db.noticias: ~3 rows (aproximadamente)
-INSERT INTO `noticias` (`id`, `categoria`, `fecha_publicacion`, `titulo`, `extracto`, `imagen_ruta`) VALUES
-	(1, 'Cultura', '2025-11-28', 'El castillo de Villasegura reabre al público tras su restauración', 'Después de 18 meses de obras, la fortaleza medieval del siglo XII vuelve a abrir sus puertas c...', 'ruta-castillo.jpg'),
-	(2, 'Institucional', '2025-11-25', 'Aprobados los presupuestos municipales para 2026', 'El pleno ha aprobado unos presupuestos centrados en servicios sociales, educación y eficiencia...', 'ruta-balanza.jpg'),
-	(3, 'Transporte', '2025-11-20', 'Nueva línea de autobús rural conecta Villasegura con la capital', 'A partir del 15 de diciembre, una nueva línea de transporte mejorará la movilidad de vecinos y...', 'ruta-autobus.jpg');
+INSERT INTO `noticias` (`id`, `categoria`, `fecha_publicacion`, `titulo`, `extracto`, `contenido`, `imagen_ruta`) VALUES
+	(1, 'Cultura', '2025-11-28', 'El castillo de Villasegura reabre al público tras su restauración', 'Después de 18 meses de obras, la fortaleza medieval del siglo XII vuelve a abrir sus puertas con nuevas rutas guiadas.\r\n\r\n', '<p>El emblemático <strong>Castillo de Villasegura</strong>, símbolo del municipio, reabre este fin de semana tras una intensa fase de restauración. Las visitas guiadas incluyen el nuevo mirador de la torre del homenaje y la renovada sala de armas.</p><p>La entrada será gratuita para empadronados durante el primer mes.</p>', 'ruta-castillo.jpg'),
+	(2, 'Institucional', '2025-11-25', 'Aprobados los presupuestos municipales para 2026', 'El pleno ha aprobado unos presupuestos centrados en servicios sociales, educación y eficiencia energética.\r\n\r\n', '<p>El Pleno del Ayuntamiento ha aprobado los presupuestos para el ejercicio 2026, que ascienden a <strong>4,2 millones de euros</strong>. Las principales partidas se destinan a servicios sociales (22%), educación y deporte (18%) y transición energética (15%).</p>', 'ruta-balanza.jpg'),
+	(3, 'Transporte', '2025-11-20', 'Nueva línea de autobús rural conecta Villasegura con la capital', 'A partir del 15 de diciembre, una nueva línea de transporte mejorará la movilidad de vecinos y estudiantes.\r\n\r\n', '<p>La Consejería de Transportes ha autorizado una nueva línea de autobús que conectará Villasegura con la capital provincial con <strong>cuatro frecuencias diarias</strong>. El servicio entrará en funcionamiento el 15 de diciembre.</p>', 'ruta-autobus.jpg');
 
 -- Volcando estructura para tabla villasegura_db.presupuesto_distribucion
 CREATE TABLE IF NOT EXISTS `presupuesto_distribucion` (
@@ -157,16 +156,22 @@ INSERT INTO `presupuesto_distribucion` (`id`, `area`, `porcentaje`, `cantidad`) 
 CREATE TABLE IF NOT EXISTS `tramites` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `titulo` varchar(255) NOT NULL,
+  `categoria` varchar(50) DEFAULT 'otros',
   `extracto` text NOT NULL,
   `contenido` text DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Volcando datos para la tabla villasegura_db.tramites: ~3 rows (aproximadamente)
-INSERT INTO `tramites` (`id`, `titulo`, `extracto`, `contenido`) VALUES
-	(1, 'Padrón Municipal', 'Alta, baja y modificación de datos en el padrón de habitantes.', NULL),
-	(2, 'Pago del IBI', 'Gestión y pago del Impuesto de Bienes Inmuebles.', NULL),
-	(3, 'Licencia de Obras', 'Solicitud de licencias para obras mayores y menores.', NULL);
+-- Volcando datos para la tabla villasegura_db.tramites: ~8 rows (aproximadamente)
+INSERT INTO `tramites` (`id`, `titulo`, `categoria`, `extracto`, `contenido`) VALUES
+	(1, 'Cita previa atención al ciudadano', 'ATENCIÓN', 'Solicita una cita presencial para cualquier trámite municipal.', NULL),
+	(2, 'Empadronamiento', 'PADRÓN', 'Alta, baja o modificación en el Padrón Municipal de Habitantes.', NULL),
+	(3, 'Certificado de empadronamiento', 'PADRÓN', 'Obtén tu certificado individual o colectivo.', NULL),
+	(4, 'Pago del IBI', 'TRIBUTOS', 'Impuesto sobre Bien.es Inmuebles: consulta y pago online.', NULL),
+	(5, 'Pago de tasa de basuras', 'TRIBUTOS', 'Liquidación y pago de la tasa de recogida de residuos.', NULL),
+	(6, 'Licencia de obras menores', 'URBANISMO', 'Solicitud para pequeñas reformas en vivienda.', NULL),
+	(7, 'Reserva de instalaciones', 'DEPORTES', 'Reserva pistas de pádel, tenis, frontón o pabellón.', NULL),
+	(8, 'Bono social de agua', 'SERVICIOS', 'Bonificación en la tasa de agua para familias vulnerables.', NULL);
 
 -- Volcando estructura para tabla villasegura_db.transparencia_categorias
 CREATE TABLE IF NOT EXISTS `transparencia_categorias` (
@@ -194,11 +199,16 @@ CREATE TABLE IF NOT EXISTS `usuarios_admin` (
   `ultimo_acceso` datetime DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `usuario` (`usuario`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Volcando datos para la tabla villasegura_db.usuarios_admin: ~1 rows (aproximadamente)
+-- Volcando datos para la tabla villasegura_db.usuarios_admin: ~6 rows (aproximadamente)
 INSERT INTO `usuarios_admin` (`id`, `usuario`, `password_hash`, `rol`, `ultimo_acceso`) VALUES
-	(1, 'admin', '$2y$10$gmt6lY7uHEmrmnKp2Q4.2u/BeO5GPLUwElta9FBEYgMnXCqhBC7b2', 'administrador', '2026-04-23 16:44:38');
+	(2, 'sergio.gil', 'e2bed137cacafd97d1f6731d5ac0ab8f', 'administrador', '2026-05-07 18:47:54'),
+	(3, 'ana.lopez', '9c627a7a123eb6fa01f53991dbdc7df0', 'editor', NULL),
+	(4, 'laura.martinez', '9daeccf7e64ae89e9facf780a6c4ac8f', 'administrador', NULL),
+	(5, 'david.roca', '9f39453333dd0cf76c02908ef3d57ff7', 'editor', NULL),
+	(6, 'miguel.sanchez', '24a4d8093bc17eca1caee39bc2a7740d', 'administrador', NULL),
+	(7, 'elena.torres', '586dad67d6a8630cd2309757cfbf7783', 'editor', NULL);
 
 /*!40103 SET TIME_ZONE=IFNULL(@OLD_TIME_ZONE, 'system') */;
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;

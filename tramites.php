@@ -11,7 +11,7 @@ $filtro_cat = isset($_GET['cat']) ? htmlspecialchars($_GET['cat'], ENT_QUOTES, '
 try {
     // Construimos la consulta dinámica
     $sql = "SELECT * FROM tramites WHERE 1=1";
-    $params = array();
+    $params = [];
 
     if (!empty($query_busqueda)) {
         $sql .= " AND (titulo LIKE :q1 OR extracto LIKE :q2)";
@@ -31,7 +31,7 @@ try {
 
 } catch(PDOException $e) {
     error_log("Error: " . $e->getMessage());
-    $resultados = array();
+    $resultados = [];
 }
 ?>
 

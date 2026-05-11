@@ -1224,6 +1224,96 @@ width: 55px;
 }
 
 /* ==========================================================================
+   SECCIÓN REPRESENTANTES (TRANSPARENCIA)
+   ========================================================================== */
+.representantes-section {
+    margin-top: 2rem;
+    margin-bottom: 5rem;
+}
+
+.representante-card {
+    background: #ffffff;
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 2.5rem 2rem;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: all 0.3s ease;
+}
+
+.representante-card:hover {
+    border-color: var(--secondary);
+    box-shadow: var(--shadow-hover);
+    transform: translateY(-4px);
+}
+
+.rep-avatar {
+    width: 110px;
+    height: 110px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-bottom: 1.5rem;
+    border: 4px solid #f1f5f9;
+    box-shadow: var(--shadow-sm);
+}
+
+.rep-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.rep-info .tag-label {
+    font-size: 0.75rem;
+    font-weight: 800;
+    color: var(--secondary);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+    display: block;
+    font-family: var(--font-heading);
+}
+
+.rep-info h3 {
+    font-size: 1.25rem;
+    color: var(--text-dark);
+    margin-bottom: 0.8rem;
+    font-family: var(--font-heading);
+}
+
+.rep-info p {
+    color: var(--text-gray);
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+    flex-grow: 1; /* Empuja el email hacia abajo si los textos tienen distinta longitud */
+}
+
+.rep-contact {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.9rem;
+    color: var(--text-dark);
+    font-weight: 600;
+    transition: color 0.3s ease;
+    padding-top: 1rem;
+    border-top: 1px solid var(--border-color);
+    width: 100%;
+    justify-content: center;
+}
+
+.rep-contact svg {
+    color: var(--secondary);
+}
+
+.rep-contact:hover {
+    color: var(--secondary);
+}
+
+/* ==========================================================================
    PÁGINA: TRÁMITES
    ========================================================================== */
 .page-tramites {

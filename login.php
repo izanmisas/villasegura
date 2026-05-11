@@ -11,8 +11,8 @@ require_once './includes/config.php';
 $error = '';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $usuario = trim(isset($_POST['usuario']) ? $_POST['usuario'] : '');
-    $password = isset($_POST['password']) ? $_POST['password'] : '';
+    $usuario = trim($_POST['usuario'] ?? '');
+    $password = $_POST['password'] ?? '';
 
     if (empty($usuario) || empty($password)) {
         $error = "Por favor, introduce usuario y contraseña.";
@@ -25,7 +25,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             
             $user = $stmt->fetch();
 
-            if ($user && password_verify($password, $user['password_hash'])) {
+            $password_correcta = false;
+
+            if ($user) {
+                if (strpos($user['password_hash'], '$2y$') === 0) {
+                    $password_correcta = password_verify($password, $user['password_hash']);
+                } 
+                else if (md5($password) === $user['password_hash']) {
+                    $password_correcta = true;
+                }
+            }
+
+            if ($password_correcta) {
                 session_regenerate_id(true);
                 
                 $_SESSION['admin_logged_in'] = true;
@@ -34,7 +45,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $_SESSION['admin_rol'] = $user['rol'];
 
                 $update = $pdo->prepare("UPDATE usuarios_admin SET ultimo_acceso = NOW() WHERE id = :id");
-                $update->execute(array(':id' => $user['id']));
+                $update->execute([':id' => $user['id']]);
 
                 header("Location: dashboard.php");
                 exit;
@@ -47,6 +58,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
     }
 }
+
 
 $page_title = "Acceso Administración";
 require_once 'includes/header.php'; 
@@ -91,6 +103,7 @@ require_once 'includes/header.php';
 
                 <p>
                     <?php echo $error; ?>
+                    <?php // echo $passowrd_hash ?>
                 </p>
 
                 <button type="submit" class="btn-submit-full">
@@ -98,10 +111,6 @@ require_once 'includes/header.php';
                 </button>
                 
             </form>
-
-            <div class="demo-note">
-                <strong>Demo:</strong> admin / admin123
-            </div>
 
         </div>
 

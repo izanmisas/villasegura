@@ -18,10 +18,10 @@ function loadEnv($path) {
 // Cargar el archivo .env
 loadEnv(__DIR__ . '/.env');
 
-$host = isset($_ENV['DB_HOST']) ? $_ENV['DB_HOST'] : 'localhost';
-$dbname = isset($_ENV['DB_NAME']) ? $_ENV['DB_NAME'] : 'villasegura_db';
-$user = isset($_ENV['DB_USER']) ? $_ENV['DB_USER'] : 'root';
-$pass = isset($_ENV['DB_PASS']) ? $_ENV['DB_PASS'] : '';
+$host = $_ENV['DB_HOST'] ?? 'localhost';
+$dbname = $_ENV['DB_NAME'] ?? 'villasegura_db';
+$user = $_ENV['DB_USER'] ?? 'root';
+$pass = $_ENV['DB_PASS'] ?? '';
 
 try {
     $pdo = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8", $user, $pass);
@@ -30,8 +30,7 @@ try {
     $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
 } catch(PDOException $e) {
     // En producción no mostramos el error real
-    $app_env = isset($_ENV['APP_ENV']) ? $_ENV['APP_ENV'] : 'production';
-    if($app_env === 'development') {
+    if(($_ENV['APP_ENV'] ?? 'production') === 'development') {
         die("Error de conexión: " . $e->getMessage());
     } else {
         die("Error de conexión a la base de datos.");
